@@ -1,0 +1,49 @@
+{
+  "name": "mac-project",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@material-ui/core": "^4.12.3",
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "bootstrap": "^5.0.2",
+    "google-map-react": "^2.1.10",
+    "i18next": "^20.3.5",
+    "node-sass": "^6.0.1",
+    "react": "^17.0.2",
+    "react-bootstrap": "^2.0.0-beta.4",
+    "react-dom": "^17.0.2",
+    "react-flag-icon-css": "^1.0.25",
+    "react-i18next": "^11.11.4",
+    "react-icons": "^4.2.0",
+    "react-scripts": "4.0.3",
+    "react-select-search": "^3.0.8",
+    "react-strapmenu": "^0.1.2",
+    "web-vitals": "^1.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
