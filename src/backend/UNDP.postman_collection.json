@@ -1,0 +1,135 @@
+{
+	"info": {
+		"_postman_id": "730944c6-7074-4051-a719-ca0ed05de630",
+		"name": "UNDP",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "vernashen Churches",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/src/backend/api/churches.php",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"src",
+						"backend",
+						"api",
+						"churches.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vernashenSelllsProperties",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/src/backend/api/vernashenSelllsProperties.php",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"src",
+						"backend",
+						"api",
+						"vernashenSelllsProperties.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vernashenTuristPlaces",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/src/backend/api/turistPlaces.php",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"src",
+						"backend",
+						"api",
+						"turistPlaces.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "gladzor",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/src/backend/api/gladzor.php",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"src",
+						"backend",
+						"api",
+						"gladzor.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getap",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/src/backend/api/getap.php",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"src",
+						"backend",
+						"api",
+						"getap.php"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "vernashen",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/src/backend/api/vernashen.php",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"src",
+						"backend",
+						"api",
+						"vernashen.php"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
