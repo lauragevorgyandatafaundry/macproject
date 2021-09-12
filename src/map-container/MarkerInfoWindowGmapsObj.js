@@ -1,0 +1,82 @@
+import React, { Component } from "react";
+
+// examples:
+import GoogleMap from "../common-components/google-map/GoogleMap";
+import Marker from "./Marker";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+
+const renderMarkers = (map, maps) => {
+  let marker = new maps.Marker({
+    position: { lat: "44.50349", lng: "40.1772" },
+    map,
+    title: "",
+    InfoWindow: {content: ""}
+  });
+  return marker;
+};
+
+class MarkerInfoWindowGmapsObj extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      places: [],
+      marks: props.marks,
+    };
+  }
+  componentDidMount() {
+    fetch("places.json")
+      .then((response) => response.json())
+      .then((data) => {
+        data.results.forEach((result) => {
+          result.show = false; // eslint-disable-line no-param-reassign
+        });
+        this.setState({ places: data.results });
+      });
+  }
+  render() {
+    const places = [];
+    const lngLat = this.props.marks?.tnv?.length>0 && [parseFloat(this.props.marks.tnv[0].latitude), parseFloat(this.props.marks.tnv[0].longitude)];
+    return (
+      <>
+        {places && (
+          <GoogleMap
+            defaultZoom={9}
+            zoom={this.props.marks.zoom ? this.props.marks.zoom : 9}
+            defaultCenter={[39.7810, 45.3464]}
+            center={lngLat}
+            bootstrapURLKeys={"AIzaSyCQvjmAfQvgn8pDWfzLAsR101UdTXFoTBs"}
+            yesIWantToUseGoogleMapApiInternals
+            onGoogleApiLoaded={({ map, maps }) => renderMarkers(map, maps)}
+          >
+            
+            {this.props.marks.tnv && this.props.marks.tnv.length > 0 &&
+              this.props.marks.tnv.map((item) => (
+                <Marker
+                  key={item.id}
+                  lat={item.latitude}
+                  lng={item.longitude}
+                  show={true}
+                  text={item.name || (item.street+ " "+ item.house + "տ․ " + (item.blind || ""))}
+                />
+              ))}
+          </GoogleMap>
+        )}
+      </>
+    );
+  }
+}
+
+const mapStateToProps = (stateLocal) => {
+  return {
+    marks: stateLocal?.marks,
+  };
+};
+
+export default connect(mapStateToProps, null)(MarkerInfoWindowGmapsObj);
+
+MarkerInfoWindowGmapsObj.propTypes = {
+  marks: PropTypes.array,
+  selectedZoom: PropTypes.number,
+};

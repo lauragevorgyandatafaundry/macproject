@@ -17,7 +17,6 @@ $stmt = $items->getChurches();
 $itemCount = $stmt->rowCount();
 
 
-
 if($itemCount > 0){
 
     $employeeArr = array();

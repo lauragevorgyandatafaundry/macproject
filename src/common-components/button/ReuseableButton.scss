@@ -1,0 +1,76 @@
+.button-success {
+  background-color: #38979d !important;
+  font-size: 16px;
+  color: #ffffff !important;
+}
+//for Langauge selection
+.button-secondary {
+  background-color: #295f7d !important;
+  font-size: 16px;
+  // font-family: "HK Grotesk" !important ;
+  font-weight: 600 !important;
+  color: #ffffff !important;
+}
+.button-filter {
+  border: 1px solid #38979d !important;
+  background-color: #ffffff !important;
+  color: #5b5b5b;
+  font-size: 16px;
+}
+
+.button-request {
+  font-size: 16px;
+  color: #fff !important;
+  background-color: #3f51b5 !important;
+}
+
+.button-completed{
+  font-size: 16px;
+  color: #ffffff !important;
+  background-color: #3cc13b !important;
+}
+
+.button-editTicket {
+  background-color: #f3feff !important;
+  font-size: 16px;
+  border: 1px solid #173951 !important;
+}
+.button-markresolve {
+  background-color: #d2ffdf !important;
+  border: 1px solid #4bd76a !important;
+  font-size: 16px;
+}
+
+.button-clear {
+  background-color: "#F2F2F2";
+  color: "#BDBDBD";
+  border-radius: 2px;
+  height: 34px;
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+}
+
+.button-goback {
+  background-color: white !important;
+  font-size: 16px;
+  color: #5b5b5b !important;
+  border: 1px solid #38979d !important;
+}
+.button-hearing-active {
+  background-color: #f3feff !important;
+  font-size: 16px;
+  color: #5b5b5b !important;
+  border: 1px solid #37c0de !important;
+}
+
+.MuiButton-root {
+  text-transform: capitalize !important;
+  // font-family: "HK Grotesk";
+}
+.MuiButton-contained.Mui-disabled {
+  background: #ebebeb !important;
+}
+.button-red-background {
+  border: 1px solid #ff0000 !important;
+}

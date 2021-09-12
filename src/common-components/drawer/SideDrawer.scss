@@ -1,0 +1,111 @@
+.MuiDrawer-paperAnchorRight {
+  border: 1rem solid #3f51b5 !important;
+  overflow: hidden;
+  .drawer-header {
+    font-family: HK Grotesk;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 22px;
+    line-height: 24px;
+    color: #5b5b5b;
+    margin-top: 9px;
+    margin-right: 148px;
+    margin-bottom: 9px;
+    margin-left: 20px;
+  }
+  .drawer-button-margin {
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+  .drawer-button-info {
+    background: #ffffff;
+    border: 1px solid #3f51b5;
+    box-sizing: border-box;
+    font-family: HK Grotesk;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 18px;
+
+    color: #5b5b5b;
+  }
+  .drawer-button-in {
+    background: #3f51b5;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+  }
+  .label-style {
+    font-family: HK Grotesk;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+    line-height: 17px;
+    color: #5b5b5b;
+  }
+
+  .button-Link {
+    font-family: HK Grotesk;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 12px;
+    line-height: 14px;
+    text-decoration-line: underline;
+
+    /* Primary Colours/Highlight Blue */
+
+    color: #3f51b5;
+  }
+  .drawer-create-button {
+    font-family: HK Grotesk;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 18px;
+
+    /* Greyscale/White */
+
+    color: #ffffff;
+    background: #3f51b5;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.05);
+    border-radius: 5px;
+  }
+  .input-box {
+    background: #ffffff;
+    border: 0.5px solid #828282;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
+  .MuiDrawer-paperAnchorDockedRight {
+    border-left: 0px !important;
+  }
+
+  .input-box {
+    background: #ffffff;
+    border: 0.5px solid #828282;
+    box-sizing: border-box;
+    border-radius: 5px;
+  }
+  .info-icon {
+    width: 1.1rem;
+    margin-bottom: 0.2rem;
+    cursor: pointer;
+    padding-left: 0.1rem;
+    color: #bdbdbd;
+  }
+  .header-text {
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .download-upload-container {
+    padding-top: 3.5rem;
+    padding-right: 0.1rem;
+  }
+
+  .MuiSelect-select:focus {
+    background-color: white;
+  }
+  .MuiInputBase-root {
+    height: 38px;
+    width: 100%;
+  }
+}

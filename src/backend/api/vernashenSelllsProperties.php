@@ -13,7 +13,7 @@ $db = $database->getConnection();
 
 $items = new Community($db);
 $items->db_table="vernashen_sells_property";
-$stmt = $items->getChurches();
+$stmt = $items->getSellsProperties();
 $itemCount = $stmt->rowCount();
 
 
@@ -30,7 +30,9 @@ if($itemCount > 0){
             "id" => $id,
             "name" => $name,
             "latitude" => $latitude,
-            "longitude" => $longitude
+            "longitude" => $longitude,
+            "area" => $area,
+            "meaning" => $meaning
         );
 
         array_push($employeeArr["body"], $e);

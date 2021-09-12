@@ -1,0 +1,43 @@
+@media screen and (max-width: 600px) {
+  .hideInfo {
+    display: none !important;
+  }
+}
+@media screen and (min-width: 600px) {
+  .hideHamburger {
+    display: none !important;
+  }
+}
+@media screen and (min-width: 750) {
+  .smallText {
+    content: "Կապ";
+    color: red;
+  }
+}
+.fixedHeight {
+  max-height: 50px;
+  height: 50px;
+}
+[type="button"]:not(:disabled),
+[type="reset"]:not(:disabled),
+[type="submit"]:not(:disabled),
+button:not(:disabled) {
+  max-height: 50px;
+  height: 50px;
+}
+.forForm {
+  .form-control {
+    width: 102%;
+  }
+}
+.houseStyle {
+  .MuiSelect-select.MuiSelect-select {
+    padding-right: 24px;
+    background: #ffffff;
+    border: 0.75px solid #295f7d;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 100%;
+    height: 50px;
+  }
+}

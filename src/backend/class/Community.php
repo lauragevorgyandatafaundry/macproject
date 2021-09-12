@@ -1,71 +1,46 @@
 <?php
-
-class Community
-{
-
-    private $conn;
-
-    public $db_table = "";
-//
-    public $id;
-//        public $blind;
-//        public $alley;
-//        public $house;
-//        public $latitude;
-//        public $longitude;
-
-    public function __construct($db)
-    {
-        $this->conn = $db;
-    }
-
-    public function getCommunityData()
-    {
-        $sqlQuery = "SELECT id,street, blind, alley, house, latitude, longitude FROM " . $this->db_table;
-        $stmt = $this->conn->prepare($sqlQuery);
-        $stmt->execute();
-        return $stmt;
-    }
-
-    public function getChurches()
-    {
-        $sqlQuery = "SELECT id,name, latitude, longitude FROM " . $this->db_table;
-        $stmt = $this->conn->prepare($sqlQuery);
-        $stmt->execute();
-        return $stmt;
-    }
-
-
-    public function getChurcheById()
+    class Community
     {
 
-        $sqlQuery = "SELECT id,name ,latitude, longitude FROM " . $this->db_table . " WHERE  name = ?";
+        private $conn;
 
-        $stmt = $this->conn->prepare($sqlQuery);
+        public $db_table = "";
 
-        $stmt->bindParam(1, $this->id);
+        public $street;
+        public $blind;
+        public $alley;
+        public $house;
+        public $latitude;
+        public $longitude;
 
-        $stmt->execute();
+        public function __construct($db)
+        {
+            $this->conn = $db;
+        }
 
-        $dataRow = $stmt->fetch(PDO::FETCH_ASSOC);
-        if (empty($dataRow)) {
-            $sqlQuery = "SELECT id,name ,latitude, longitude FROM  vernashen_tourist_places WHERE  name = ?";
+        public function getCommunityData()
+        {
+            $sqlQuery = "SELECT id,street, blind, alley, house, latitude, longitude FROM " . $this->db_table;
             $stmt = $this->conn->prepare($sqlQuery);
-
-            $stmt->bindParam(1, $this->id);
-
             $stmt->execute();
-
-            $dataRow = $stmt->fetch(PDO::FETCH_ASSOC);
+            return $stmt;
+        }
+        public function getChurches()
+        {
+            $sqlQuery = "SELECT id,name, latitude, longitude FROM " . $this->db_table;
+            $stmt = $this->conn->prepare($sqlQuery);
+            $stmt->execute();
+            return $stmt;
         }
 
 
-        $this->id = $dataRow['id'];
-        $this->name = $dataRow['name'];
-        $this->latitude = $dataRow['latitude'];
-        $this->longitude = $dataRow['longitude'];
+        public function getSellsProperties()
+        {
+            $sqlQuery = "SELECT id,name, latitude, longitude,area,meaning FROM " . $this->db_table;
+            $stmt = $this->conn->prepare($sqlQuery);
+            $stmt->execute();
+            return $stmt;
+        }
 
     }
-
-}
 

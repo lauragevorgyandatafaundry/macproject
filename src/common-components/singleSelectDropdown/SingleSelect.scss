@@ -1,0 +1,65 @@
+.single-select-container {
+  .MuiSelect-select.MuiSelect-select {
+    padding-right: 24px;
+    background: #ffffff;
+    border: 0.75px solid #295f7d;
+    box-sizing: border-box;
+    border-radius: 5px;
+    width: 100%;
+    height: 36px;
+  }
+  .MuiInputBase-root {
+    line-height: 1em;
+    width: 100%;
+  }
+  .MuiPaper-elevation8 {
+    top: 11rem !important;
+  }
+  .MuiSelect-nativeInput {
+    width: 97%;
+    bottom: 6px;
+    opacity: 1;
+    position: absolute;
+    pointer-events: none;
+    border: 1px solid white;
+    margin-left: 1px;
+    background-color: white;
+  }
+  .MuiInputBase-root .Mui-disabled.MuiSelect-select.Mui-disabled {
+    background-color: #ebebeb;
+    border-radius: 5px;
+    border: 1px solid #ced4da;
+  }
+  .MuiInputBase-root .Mui-disabled.MuiSelect-select.Mui-disabled ~ input {
+    background-color: #ebebeb;
+    border: 1px solid #ebebeb;
+  }
+}
+
+.dissable {
+  width: 97% !important;
+  bottom: 6px !important;
+  opacity: 1 !important;
+  position: absolute !important;
+  pointer-events: none !important;
+  border: 1px solid white !important;
+  margin-left: 1px !important;
+  background-color: white !important;
+}
+.nondissable {
+  width: 97% !important;
+  bottom: 6px !important;
+  opacity: 1 !important;
+  position: absolute !important;
+  pointer-events: none !important;
+  border: 1px solid #ebebeb !important;
+  margin-left: 1px !important;
+  background-color: #ebebeb !important;
+}
+// .MuiSelect-nativeInput {
+//   border: 1px solid blue;
+//   background-color: blue;
+// }
+.percent{
+  width: 37%;
+}
