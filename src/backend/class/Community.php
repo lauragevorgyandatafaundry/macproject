@@ -36,7 +36,7 @@
 
         public function getSellsProperties()
         {
-            $sqlQuery = "SELECT id,name, latitude, longitude,area,meaning FROM " . $this->db_table;
+            $sqlQuery = "SELECT id,name, latitude, longitude,status ,area FROM " . $this->db_table;
             $stmt = $this->conn->prepare($sqlQuery);
             $stmt->execute();
             return $stmt;

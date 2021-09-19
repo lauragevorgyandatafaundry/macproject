@@ -32,7 +32,7 @@ if($itemCount > 0){
             "latitude" => $latitude,
             "longitude" => $longitude,
             "area" => $area,
-            "meaning" => $meaning
+            "meaning" => $status
         );
 
         array_push($employeeArr["body"], $e);

@@ -1,4 +1,4 @@
-<?php 
+<?php
     class Database {
         private $host = "localhost";
         private $database_name = "gladzor_community_map";
@@ -22,3 +22,6 @@
 
 
 ?>
+
+
+
