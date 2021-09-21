@@ -1,17 +1,42 @@
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 750px) {
+  ․css-2b097c-container:disabled {
+    min-width: 180px;
+  }
   .hideInfo {
     display: none !important;
   }
+  .css-14jk2my-container {
+    min-width: 180px;
+  }
 }
-@media screen and (min-width: 600px) {
+@media screen and (max-width: 750px) {
+  .css-2b097c-container,
+  .changeSize {
+    min-width: 180px;
+    max-width: 180px;
+  }
+}
+@media screen and (max-width: 360px) {
+  .smallerphone {
+    // max-width: ;
+  }
+}
+.css-g1d714-ValueContainer, .css-yk16xz-control, .css-2b097c-container, .css-1hb7zxy-IndicatorsContainer {
+  background: hsl(0, 0%, 95%);
+}
+@media screen and (min-width: 750px) {
+  .css-14jk2my-container {
+    min-width: 180px;
+  }
   .hideHamburger {
     display: none !important;
   }
-}
-@media screen and (min-width: 750) {
-  .smallText {
-    content: "Կապ";
-    color: red;
+  .css-2b097c-container,
+  .changeSize {
+    min-width: 180px;
+  }
+  ․css-2b097c-container:disabled {
+    min-width: 180px;
   }
 }
 .fixedHeight {
@@ -27,17 +52,49 @@ button:not(:disabled) {
 }
 .forForm {
   .form-control {
-    width: 102%;
+    width: 70%;
   }
+}
+.css-yk16xz-control {
+  height: 30px;
+  background: hsl(0, 0%, 95%);
+}
+.css-2b097c-container:disabled {
+  margin-left: 10px;
+  margin-top: 2px;
+  min-width: 180px;
+  background: hsl(0, 0%, 95%);
+}
+.css-14jk2my-container {
+  min-width: 180px;
+  background: hsl(0, 0%, 95%);
+}
+.css-14jk2my-container, .css-2b097c-container {
+  margin-top: 3px;
+  margin-left: 3px;
+  background: hsl(0, 0%, 95%);
+
 }
 .houseStyle {
   .MuiSelect-select.MuiSelect-select {
     padding-right: 24px;
-    background: #ffffff;
+    background: hsl(0, 0%, 95%);
     border: 0.75px solid #295f7d;
     box-sizing: border-box;
     border-radius: 5px;
     width: 100%;
     height: 50px;
+    margin-left: 2px;
+  }
+  .MuiPaper-elevation1 {
+    box-shadow: 0;
+  }
+}
+.MuiPaper-elevation1 {
+  box-shadow: 0;
+}
+.shadow {
+  .MuiPaper-elevation1 {
+    box-shadow: none;
   }
 }

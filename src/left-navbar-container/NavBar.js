@@ -55,7 +55,6 @@ function NavBar(props) {
     vernashenchRes,
   } = props;
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [popOpen, setPopOpen] = useState(false);
   useEffect(() => {
     fetchGladzor();
   }, []);
@@ -71,7 +70,7 @@ function NavBar(props) {
   useEffect(() => {
     const needStore = {
       tnv: vernashenTPRes,
-      zoom: 11,
+      zoom: 15,
     };
     getSelectedMarks(needStore);
   }, [vernashenTPRes]);
@@ -79,7 +78,7 @@ function NavBar(props) {
   useEffect(() => {
     const needStore = {
       tnv: vernashenRes,
-      zoom: 11,
+      zoom: 15,
     };
     getSelectedMarks(needStore);
   }, [vernashenRes]);
@@ -87,7 +86,7 @@ function NavBar(props) {
   useEffect(() => {
     const needStore = {
       tnv: getapRes,
-      zoom: 11,
+      zoom: 15,
     };
     getSelectedMarks(needStore);
   }, [getapRes]);
@@ -95,7 +94,7 @@ function NavBar(props) {
   useEffect(() => {
     const needStore = {
       tnv: vernashenspRes,
-      zoom: 11,
+      zoom: 15,
     };
     getSelectedMarks(needStore);
   }, [vernashenspRes]);
@@ -103,7 +102,7 @@ function NavBar(props) {
   useEffect(() => {
     const needStore = {
       tnv: vernashenchRes,
-      zoom: 11,
+      zoom: 15,
     };
     getSelectedMarks(needStore);
   }, [vernashenchRes]);
@@ -129,27 +128,19 @@ function NavBar(props) {
       case "Տուրիստական նշանակության վայրեր":
         if (city === "Գետափ") {
           alert("Դեռևս հասանելի չէ");
-          setPopOpen(false);
-          setAnchorEl(null);
           break;
         }
         if (city === "Վերնաշեն") {
           getTouristPlaceVernashen();
-          setPopOpen(true);
-          setAnchorEl(event.currentTarget);
           break;
         }
         break;
       case "Վարչական շենքեր":
         if (city === "Գետափ") {
           alert("Դեռևս հասանելի չէ");
-          setPopOpen(false);
-          setAnchorEl(null);
           break;
         }
         if (city === "Վերնաշեն") {
-          setPopOpen(true);
-          setAnchorEl(event.currentTarget);
           fetchVernashenCHU();
           break;
         }
@@ -157,13 +148,9 @@ function NavBar(props) {
       case "Վաճառքի ենթակա գույք և շինություն":
         if (city === "Գետափ") {
           alert("Դեռևս հասանելի չէ");
-          setPopOpen(false);
-          setAnchorEl(null);
           break;
         }
         if (city === "Վերնաշեն") {
-          setPopOpen(true);
-          setAnchorEl(event.currentTarget);
           fetchVernashenSP();
           break;
         }
@@ -333,8 +320,6 @@ function NavBar(props) {
         open={open}
         anchorEl={anchorEl}
         handleClose={() => {
-          setPopOpen(false);
-          setAnchorEl(null);
         }}
         content={
           <div
@@ -344,8 +329,6 @@ function NavBar(props) {
               <span style={{ marginLeft: "auto", cursor: "pointer" }}>
                 <CloseIcon
                   onClick={() => {
-                    setPopOpen(false);
-                    setAnchorEl(null);
                   }}
                 />
               </span>
@@ -376,8 +359,6 @@ function NavBar(props) {
                       zoom: 11,
                     }
                     getSelectedMarks(tempVar);
-                    setPopOpen(false);
-                    setAnchorEl(null);
                   }}
                 >
                   <VscDebugBreakpointLogUnverified className="mr-1" />

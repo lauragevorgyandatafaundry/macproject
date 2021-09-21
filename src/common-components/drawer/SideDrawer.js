@@ -168,7 +168,7 @@ const SideDrawer = (props) => {
           <div className={classes.drawerHeader}>
             <div className="header-text">
               {drwawerHeader}
-              <AiOutlineInfoCircle className="info-icon" />
+              {/* <AiOutlineInfoCircle className="info-icon" /> */}
             </div>
 
             <IconButton onClick={handleDrawerClose}>

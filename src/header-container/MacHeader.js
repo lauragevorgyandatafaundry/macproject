@@ -12,21 +12,28 @@ function MacContainer() {
   return (
     <React.Fragment>
       <CssBaseline />
-      <AppBar>
-        <Toolbar>
-          <Typography
-            variant="h6"
-            className="d-flex  justify-content-between"
-            style={{
+      <AppBar style={{
               width: "100%",
               height: "100px",
               display: "flex",
+              backgroundColor: "#e6e6e6"
+            }}>
+        <Toolbar>
+          <div
+            variant="h6"
+            className="col-12 d-flex  justify-content-between"
+            style={{
+              maxWidth:"100%",
+              maxHeight: "100px",
+              height: "auto",
+              display: "flex",
+              backgroundColor: "#e6e6e6"
             }}
           >
-            <img src={logo1} />
-            <img src={logo2} />
-            <img src={logo3} />
-          </Typography>
+            <div className="col-3  align-items-center"><img src={logo1} /></div>
+            <div className="col-3 d-flex  align-items-center justify-content-center"><img src={logo2} /></div>
+            <div className="col-3  d-flex align-items-end justify-content-end"><img src={logo3} /></div>
+          </div>
         </Toolbar>
       </AppBar>
       <Toolbar />

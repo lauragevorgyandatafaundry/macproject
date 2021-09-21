@@ -1,43 +1,55 @@
-import React from "react";
+import React, { useEffect } from "react";
 import MacContainer from "./mac-main-container/MacContainer";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { AiFillHeart } from "react-icons/ai";
 import TemporaryDrawe from "../src/header-container/TemporaryDrawer";
+import { useTranslation } from "react-i18next";
+
 import "./App.css";
 
 function App() {
   const [modalShow, setModalShow] = React.useState(false);
+  const { i18n, t } = useTranslation();
+  const localeLang = "am"; // this we will read from localstorage or from a service
+  useEffect(() => {
+    i18n.changeLanguage(localeLang);
+  }, [i18n, localeLang]);
   return (
-    <div style={{height: "100vh"}}>
+    <div style={{ height: "100vh" }}>
       <div>
-      <MacContainer />
+        <MacContainer />
       </div>
-      <div className="navbar fixed-bottom d-flex justify-content-center" style={{backgroundColor: "#3f51b5"}}>
+      <div
+        className="navbar d-flex justify-content-center smallText"
+        style={{
+          position: "fixed",
+          bottom: "0%",
+          width: "100%",
+          alignItems: "center",
+          fontSize: "10px",
+        }}
+      >
         <span className="mr-3">
-        Քարտեզը պատրաստվել է ՄԱԶԾ «Կանայք և երիտասարդները նորարար տեղական զարգացման գործընթացներում
+          {t("footer_text")}
+         
         </span>
-        <AiFillHeart />
+        <AiFillHeart style={{ marginLeft: "3px" }} />
         <button
           onClick={() => setModalShow(true)}
+          className="smallText"
           style={{
             backgroundColor: "transparent",
             border: "none",
-            color: "white",
-            fontSize: "12px",
+            fontSize: "10px",
           }}
         >
-          իմանալ ավելին
+          {t("know_more")}
         </button>
       </div>
       <TemporaryDrawe
         show={modalShow}
-        bodyData="Քարտեզը պատրաստվել է «Your way» նախաձեռնության կողմից, որն իրականացվել է ՄԱԶԾ
-        «Կանայք և երիտասարդները նորարար տեղական զարգացման գործընթացներում» ծրագրի
-        շրջանակներում, ծրագիրը ֆինանսավորվում է Շվեյցարիայի զարգացման և համագործակցության
-        գործակալության կողմից և իրականցվում է ՀՀ Տարածքային կառավարման և
-        ենթակառուցվածքների նախարարության հետ համագործակցությամբ։ Հավելվածում արտահայտված
-        տեսակետները պարտադիր չէ, որ համընկնեն ՄԱԶԾ և ՇԶՀԳ տեսակետների հետ։"
-        bodyHeader="Մեր Մասին"
+        bodyData={t("big_info")}
+        bodyHeader={t("about_us")}
         onHide={() => setModalShow(false)}
       />
     </div>
