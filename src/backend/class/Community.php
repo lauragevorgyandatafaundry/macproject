@@ -40,6 +40,13 @@
             $stmt->execute();
             return $stmt;
         }
+        public function administrative_buildings()
+        {
+            $sqlQuery = "SELECT id,name, latitude, longitude FROM " . $this->db_table;
+            $stmt = $this->conn->prepare($sqlQuery);
+            $stmt->execute();
+            return $stmt;
+        }
 
 
         public function getSellsProperties()
