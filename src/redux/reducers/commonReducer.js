@@ -18,6 +18,12 @@ import {
   GET_GLADZOR_FAILURE,
   GET_GLADZOR_REQUEST,
   GET_GLADZOR_SUCCESS,
+  GET_GLADZORHOTEL_FAILURE,
+  GET_GLADZORHOTEL_REQUEST,
+  GET_GLADZORHOTEL_SUCCESS,
+  GET_BUILDINGS_FAILURE,
+  GET_BUILDINGS_REQUEST,
+  GET_BUILDINGS_SUCCESS,
   } from "../types";
   
 const initialState = {
@@ -29,6 +35,8 @@ const initialState = {
     vernashenRes: [],
     vernashenSPRes: [],
     vernashenCHURes: [],
+    gladzorHotelRes: [],
+    gladzorBuildings: [],
     error: "",
   };
   
@@ -150,6 +158,51 @@ const initialState = {
                       vernashenCHURes: [],
                       error: action.payload,
                     };
+                    case GET_GLADZORHOTEL_REQUEST:
+                      return {
+                        ...state,
+                        loading: true,
+                      };
+                    case GET_GLADZORHOTEL_SUCCESS:
+                      return {
+                        ...state,
+                        loading: false,
+                        gladzorHotelRes: action.payload,
+                        error: "",
+                      };
+                    case GET_GLADZORHOTEL_FAILURE:
+                      return {
+                        ...state,
+                        loading: false,
+                        gladzorHotelRes: [],
+                        error: action.payload,
+                      };
+                      case GET_VERNASHENCHU_FAILURE:
+                        return {
+                          ...state,
+                          loading: false,
+                          vernashenCHURes: [],
+                          error: action.payload,
+                        };
+                        case GET_BUILDINGS_REQUEST:
+                          return {
+                            ...state,
+                            loading: true,
+                          };
+                        case GET_BUILDINGS_SUCCESS:
+                          return {
+                            ...state,
+                            loading: false,
+                            gladzorBuildings: action.payload,
+                            error: "",
+                          };
+                        case GET_BUILDINGS_FAILURE:
+                          return {
+                            ...state,
+                            loading: false,
+                            gladzorBuildings: [],
+                            error: action.payload,
+                          };
       default:
         return state;
     }

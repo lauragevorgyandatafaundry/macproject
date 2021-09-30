@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Form from "react-bootstrap/Form";
 import Dropdown from "react-bootstrap/Dropdown";
+import { ToastContainer } from "react-toastify";
 import FlagIcon from "./FlagIcon.js";
 import TemporaryDrawe from "../header-container/TemporaryDrawer";
 import { AiOutlineMail, AiOutlineMobile } from "react-icons/ai";
@@ -13,7 +14,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import "./HeaderComponent.scss";
 import SideDrawer from "../common-components/drawer/SideDrawer";
 import Select from "react-select";
-import NavBar from "../left-navbar-container/NavBar.js";
+import { toast } from "react-toastify";
 import SingleSelects from "../common-components/singleSelectDropdown/SingleSelect";
 import { useTranslation } from "react-i18next";
 import { connect } from "react-redux";
@@ -25,10 +26,13 @@ import {
   getSelectedMarks,
   fetchVernashenCHU,
   fetchVernashenSP,
+  fetchGladzorHotel,
+  fetchBuildings,
 } from "../redux/actions/commonActions";
 import { MdDone } from "react-icons/md";
 import _ from "lodash";
 import Button from "../common-components/button/ReuseableButton";
+import "react-toastify/dist/ReactToastify.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -53,7 +57,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
   },
 }));
-
 function HeaderComponent(props) {
   const {
     fetchGladzor,
@@ -67,9 +70,13 @@ function HeaderComponent(props) {
     vernashenCHURes,
     fetchVernashenSP,
     vernashenSPRes,
+    fetchGladzorHotel,
+    gladzorHotelRes,
+    fetchBuildings,
+    buildings,
   } = props;
   const { i18n, t } = useTranslation();
-  const localeLang = "am"; // this we will read from localstorage or from a service
+  const [localeLang, setLocalLang] = React.useState("am"); // this we will read from localstorage or from a service
   const [otherOption, setOtherOption] = React.useState("");
   const [modalShow, setModalShow] = React.useState(false);
   const [open, setOpen] = React.useState(false);
@@ -85,11 +92,29 @@ function HeaderComponent(props) {
   ]);
   const forSale = [t("sold"), t("sale"), t("interesting")];
   const touristPlaces = [t("monuments_culural_places"), t("hotels_bb")];
-  const [toggleContents, setToggleContents] = useState(
-    <>
-      <FlagIcon code={"am"} /> Հայերեն
-    </>
-  );
+  const [toggleContents, setToggleContents] = useState();
+  const errorToast = () => toast.error(t("select_reason"),{ type: toast.TYPE.WARNING, autoClose: 5000 });
+
+  useEffect(() => {
+    setToggleContents(
+      <>
+        <FlagIcon code={"am"} /> Հայերեն
+      </>
+    );
+  }, []);
+  useEffect(() => {
+    if (window.localStorage.getItem("lang")) {
+      setLocalLang(window.localStorage.getItem("lang"));
+      const { code, title } = countries.find(
+        ({ code }) => window.localStorage.getItem("lang") === code
+      );
+      setToggleContents(
+        <>
+          <FlagIcon code={code} /> {title}
+        </>
+      );
+    }
+  }, [window.localStorage]);
   useEffect(() => {
     i18n.changeLanguage(localeLang);
   }, [i18n, localeLang]);
@@ -136,9 +161,6 @@ function HeaderComponent(props) {
     // setShowOther(false);
     setOpen(false);
   };
-  const moveToSearch = (val) => {
-    setOtherOption(val);
-  };
   useEffect(() => {
     fetchGladzor();
   }, []);
@@ -166,6 +188,23 @@ function HeaderComponent(props) {
     };
     vernashenCHURes && getSelectedMarks(needStore);
   }, [vernashenCHURes]);
+
+  useEffect(() => {
+    const needStore = {
+      tnv: gladzorHotelRes,
+      zoom: 11,
+    };
+    gladzorHotelRes && getSelectedMarks(needStore);
+  }, [gladzorHotelRes]);
+
+  useEffect(() => {
+    const needStore = {
+      tnv: buildings,
+      zoom: 11,
+    };
+    buildings && getSelectedMarks(needStore);
+  }, [buildings]);
+
   useEffect(() => {
     const needStore = {
       tnv: vernashenRes,
@@ -200,7 +239,7 @@ function HeaderComponent(props) {
   }, [getapRes]);
   useEffect(() => {
     if (village) {
-      if(village?.value === "Գլաձոր" || village?.value === "Gladzor"){
+      if (village?.value === "Գլաձոր" || village?.value === "Gladzor") {
         fetchGladzor();
       }
       if (village?.value === "Գետափ" || village?.value === "Getap") {
@@ -217,7 +256,7 @@ function HeaderComponent(props) {
     ) {
       fetchVernashenCHU();
     } else {
-      alert("Այս պահին հասանելի չէ");
+      fetchGladzorHotel();
     }
     closeDrawer();
   };
@@ -267,11 +306,13 @@ function HeaderComponent(props) {
                 ({ code }) => eventKey === code
               );
               i18n.changeLanguage(code);
+              window.localStorage.setItem("lang", code);
               setToggleContents(
                 <>
                   <FlagIcon code={code} /> {title}
                 </>
               );
+              refreshPage();
             }}
           >
             <Dropdown.Toggle
@@ -402,7 +443,8 @@ function HeaderComponent(props) {
               text={t("administrative_buildings")}
               colorVarient="filter"
               handleChange={() => {
-                alert("Հասանելի չէ");
+                fetchBuildings();
+                closeDrawer();
               }}
             />
           </div>
@@ -516,6 +558,9 @@ function HeaderComponent(props) {
       {/* <NavBar /> */}
     </div>
   );
+  function refreshPage() {
+    window.location.reload(false);
+  }
   return (
     <div className="row mt-4 d-flex justify-content-between shadow">
       <div className={`${isMobile ? "col-12 mt-2" : "col-6 mt-2"}`}>
@@ -537,21 +582,29 @@ function HeaderComponent(props) {
               className={classes.root}
               style={{ backgroundColor: "#e6e6e6" }}
             >
-              <Select
-                defaultValue={""}
-                placeholder={t("search")}
-                isDisabled={reason.label === "" || !reasonCompleted}
-                options={localSearch || []}
-                onChange={(e) => {
-                  setSearched(e);
-                  const needStore = {
-                    tnv: [e.value],
-                    zoom: 20,
-                  };
-                  getSelectedMarks(needStore);
+              <div
+                onClick={() => {
+                  !reasonCompleted &&
+                    errorToast("kmkm");
                 }}
-                value={searched}
-              />
+              >
+                <Select
+                  defaultValue={""}
+                  placeholder={t("search")}
+                  isDisabled={reason.label === "" || !reasonCompleted}
+                  options={localSearch || []}
+                  onChange={(e) => {
+                    setSearched(e);
+                    const needStore = {
+                      tnv: [e.value],
+                      zoom: 20,
+                    };
+                    getSelectedMarks(needStore);
+                  }}
+                  onInputChange
+                  value={searched}
+                />
+              </div>
               <IconButton
                 type="submit"
                 className={(classes.iconButton, "hideInfo")}
@@ -575,14 +628,16 @@ function HeaderComponent(props) {
                 onChange={(e) => {
                   setReasonCompleted(false);
                   setOtherValue("");
-                  (e.value !== "Այլ" && e.value !== "Others") && setReasonCompleted(true);
+                  e.value !== "Այլ" &&
+                    e.value !== "Others" &&
+                    setReasonCompleted(true);
                   setReason(e);
                 }}
                 value={reason || ""}
               />
               {reason?.label && reasonCompleted === true && (
                 <Select
-                  defaultValue={{value: t("gladzor"), label: t("gladzor")}}
+                  defaultValue={{ value: t("gladzor"), label: t("gladzor") }}
                   placeholder={t("choose_village")}
                   options={[
                     { value: t("gladzor"), label: t("gladzor") },
@@ -659,11 +714,13 @@ function HeaderComponent(props) {
                   ({ code }) => eventKey === code
                 );
                 i18n.changeLanguage(code);
+                window.localStorage.setItem("lang", code);
                 setToggleContents(
                   <>
                     <FlagIcon code={code} /> {title}
                   </>
                 );
+                window.location.reload(false);
               }}
             >
               <Dropdown.Toggle
@@ -706,7 +763,7 @@ function HeaderComponent(props) {
       <TemporaryDrawe
         show={modalShow}
         bodyData={bodyData}
-        bodyHeader="Կապ մեզ հետ"
+        bodyHeader={t("contact_with_us")}
         onHide={() => setModalShow(false)}
       />
       {open && (
@@ -717,6 +774,7 @@ function HeaderComponent(props) {
           handleDrawerClose={closeDrawer}
         />
       )}
+      <ToastContainer draggablePercent={60} />
     </div>
   );
 }
@@ -727,6 +785,8 @@ const mapStateToProps = (stateLocal) => {
     getapRes: stateLocal.getapRes.body,
     vernashenCHURes: stateLocal.vernashenCHURes.body,
     vernashenSPRes: stateLocal.vernashenSPRes.body,
+    gladzorHotelRes: stateLocal.gladzorHotelRes.body,
+    buildings: stateLocal.gladzorBuildings.body,
   };
 };
 
@@ -738,6 +798,8 @@ const mapDispatchToProps = (dispatch) => {
     fetchVernashen: () => dispatch(fetchVernashen()),
     fetchVernashenCHU: () => dispatch(fetchVernashenCHU()),
     fetchVernashenSP: () => dispatch(fetchVernashenSP()),
+    fetchGladzorHotel: () => dispatch(fetchGladzorHotel()),
+    fetchBuildings: () => dispatch(fetchBuildings()),
   };
 };
 export default connect(mapStateToProps, mapDispatchToProps)(HeaderComponent);
@@ -753,4 +815,8 @@ HeaderComponent.propTypes = {
   vernashenCHURes: PropTypes.array,
   fetchVernashenSP: PropTypes.func,
   vernashenSPRes: PropTypes.array,
+  gladzorHotelRes: PropTypes.array,
+  fetchGladzorHotel: PropTypes.func,
+  fetchBuildings: PropTypes.func,
+  buildings: PropTypes.array,
 };

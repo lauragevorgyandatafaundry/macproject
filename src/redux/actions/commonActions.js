@@ -19,6 +19,12 @@ import {
   GET_GLADZOR_FAILURE,
   GET_GLADZOR_REQUEST,
   GET_GLADZOR_SUCCESS,
+  GET_GLADZORHOTEL_FAILURE,
+  GET_GLADZORHOTEL_REQUEST,
+  GET_GLADZORHOTEL_SUCCESS,
+  GET_BUILDINGS_FAILURE,
+  GET_BUILDINGS_REQUEST,
+  GET_BUILDINGS_SUCCESS,
 } from "../types";
 
 // axios.defaults.headers.post['Content-Type'] = 'application/json';
@@ -239,6 +245,74 @@ export const fetchVernashenCHU = () => {
       })
       .catch((error) => {
         dispatch(fetchVernashenCHUFailure(error.message));
+      });
+  };
+};
+// fetch Vernashen Churches
+export const fetchGladzorHotelRequest = () => {
+  return {
+    type: GET_GLADZORHOTEL_REQUEST,
+  };
+};
+
+export const fetchGladzorHotelSuccess = (stateAll) => {
+  return {
+    type: GET_GLADZORHOTEL_SUCCESS,
+    payload: stateAll,
+  };
+};
+
+export const fetchGladzorHotelFailure = (error) => {
+  return {
+    type: GET_GLADZORHOTEL_FAILURE,
+    payload: error,
+  };
+};
+export const fetchGladzorHotel = () => {
+  return (dispatch) => {
+    dispatch(fetchGladzorHotelRequest());
+    return axios
+      .get("http://localhost:8080/src/backend/api/hotels.php")
+      .then((response) => {
+          const getapRes = response?.data;
+          dispatch(fetchGladzorHotelSuccess(getapRes));
+      })
+      .catch((error) => {
+        dispatch(fetchGladzorHotelFailure(error.message));
+      });
+  };
+};
+// fetch buildings
+export const fetchBuildingsRequest = () => {
+  return {
+    type: GET_BUILDINGS_REQUEST,
+  };
+};
+
+export const fetchBuildingsSuccess = (stateAll) => {
+  return {
+    type: GET_BUILDINGS_SUCCESS,
+    payload: stateAll,
+  };
+};
+
+export const fetchBuildingsFailure = (error) => {
+  return {
+    type: GET_BUILDINGS_FAILURE,
+    payload: error,
+  };
+};
+export const fetchBuildings = () => {
+  return (dispatch) => {
+    dispatch(fetchBuildingsRequest());
+    return axios
+      .get("http://localhost:8080/src/backend/api/administrative_buildings.php")
+      .then((response) => {
+          const getapRes = response?.data;
+          dispatch(fetchBuildingsSuccess(getapRes));
+      })
+      .catch((error) => {
+        dispatch(fetchBuildingsFailure(error.message));
       });
   };
 };

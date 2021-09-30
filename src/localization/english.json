@@ -3,6 +3,7 @@
   "contact_us": "Contact Us",
   "buildings_structures_areas": "Buildings, Structures, Areas",
   "search": "Search",
+  "select_reason": "Please select reason",
   "reason_of_search": "Reason of search",
   "other": "Other",
   "choose_village": "Choose village",
@@ -26,5 +27,6 @@
   "getap": "Getap",
   "vernashen": "Vernashen",
   "house": "house",
-  "gladzor": "Gladzor"
+  "gladzor": "Gladzor",
+  "contact_with_us": "Contact"
 }
